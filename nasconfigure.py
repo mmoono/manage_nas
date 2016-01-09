@@ -3,6 +3,7 @@
 import socket
 import shelve
 import naspass
+import nasmenu
 from getpass import getpass
 
 def is_valid_ipv4_address(address):
@@ -48,7 +49,13 @@ def initialize_shelf():
 
 
 def print_current_setup():
-    s = shelve.open('config.dat')
+    printed_text = "Current NAS Manager configuration"
+    s = shelve.open('../config.dat')
+    print("")
+    print("+"*(len(printed_text)+4))
+    print("+ "+printed_text.center(len(printed_text))+" +")
+    print("+"*(len(printed_text)+4))
+    print("")
     print("NAS MAC: {0}\nNetwork broadcast: {1}\nNAS username: {2}\n".format(s['mac'], s['broadcast'], s['user']))
     s.close()
 
@@ -105,7 +112,7 @@ def configure_password():
 
 
 def change_configuration(choice):
-    s = shelve.open('config.dat')
+    s = shelve.open('../config.dat')
     if int(choice) == 1:
         macaddress = configure_mac()
         s['mac'] = macaddress
@@ -123,9 +130,15 @@ def change_configuration(choice):
         s['mac'] = macaddress
         s['broadcast'] = address
         s['user'] = username
+    elif int(choice) == 5:
+        print_current_setup()
+    elif int(choice) == 0:
+        execfile('nasmanager.py')
     s.close()
 
 if __name__ == '__main__':
     initialize_shelf()
-    print_current_setup()
-    change_configuration(4)
+    choice = nasmenu.print_menu("Configuration menu", nasmenu.config_menu_options)
+    while choice <> 0:
+        change_configuration(choice)
+        choice = nasmenu.print_menu("Configuration menu", nasmenu.config_menu_options)
