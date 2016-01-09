@@ -25,7 +25,7 @@ def is_valid_ipv4_address(address):
 
 
 def initialize_shelf():
-    s = shelve.open("config.dat")
+    s = shelve.open("../config.dat")
     try:
         existing = s['mac']
         if existing and s['mac'] == None:
@@ -98,10 +98,10 @@ def configure_password():
     secret = naspass.NasPass()
     paintextpass = getpass("Provide NAS password ")
     encPWD = secret.encryptPassword(paintextpass)
-    file = open("passwd.bin", "wb")
+    file = open("../passwd.bin", "wb")
     file.write(encPWD)
     file.close
-    print "Password file passwd.bin was created in current path."
+    print "Password file passwd.bin was created in parent directory."
 
 
 def change_configuration(choice):
