@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 
-main_menu_options = ["Start NAS", "Shutdown NAS", "Configure NAS", "Exit\n"]
+main_menu_options = ["Start NAS", "Shutdown NAS", "Configure NMT", "Exit\n"]
 config_menu_options = ["Configure NAS MAC address", "Configure NAS IP address", "Configure network broadcast",
                        "Configure username and password", "Run initial configuration", "Print current setup",
                        "Exit to main menu\n"]

@@ -4,7 +4,7 @@
 import socket
 import struct
 
-def wake_on_lan(macaddress):
+def wake_on_lan(macaddress, broadcast):
     """ Switches on remote computers using WOL. """
 
     # Check macaddress format and try to compensate.
@@ -28,4 +28,7 @@ def wake_on_lan(macaddress):
     # Broadcast it to the LAN.
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    sock.sendto(send_data, (BROADCAST, 7))
+    sock.sendto(send_data, (broadcast, 7))
+
+
+#def check_nas_status(ip):

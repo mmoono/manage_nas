@@ -62,7 +62,8 @@ def print_current_setup():
     print("+ "+printed_text.center(len(printed_text))+" +")
     print("+"*(len(printed_text)+4))
     print("")
-    print("NAS MAC: {0}\nNetwork broadcast: {1}\nNAS username: {2}\n".format(s['mac'], s['broadcast'], s['user']))
+    print("NAS MAC: {}\nNAS IP: {} \nNetwork broadcast: {}\nNAS username: {}\n".format(s['mac'], s['ip'], s['broadcast'],
+                                                                                       s['user']))
     s.close()
 
 
