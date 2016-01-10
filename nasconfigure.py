@@ -45,6 +45,12 @@ def initialize_shelf():
             raise ValueError('NAS username is empty')
     except:
         s['user'] = None
+    try:
+        existing = s['ip']
+        if existing and s['ip'] == None:
+            raise ValueError('NAS IP address is empty')
+    except:
+        s['ip'] = None
     s.close()
 
 
@@ -86,12 +92,12 @@ def configure_mac():
     return macaddress
 
 
-def configure_broadcast():
-    address = raw_input("Enter new broadcast address: ")
+def configure_address(address_type):
+    address = raw_input("Enter new {} address: ".format(address_type))
     is_valid = is_valid_ipv4_address(address)
     while not is_valid:
-        print("You have provided not valid IPv4 broadcast, please retry.")
-        address = raw_input("Enter new broadcast address: ")
+        print("You have provided not valid IPv4 address, please retry.")
+        address = raw_input("Enter new {} address: ".format(address_type))
         is_valid = is_valid_ipv4_address(address)
     return address
 
@@ -117,20 +123,25 @@ def change_configuration(choice):
         macaddress = configure_mac()
         s['mac'] = macaddress
     elif int(choice) == 2:
-        address = configure_broadcast()
-        s['broadcast'] = address
+        address = configure_address("NAS IP")
+        s['ip'] = address
     elif int(choice) == 3:
+        address = configure_address("broadcast")
+        s['broadcast'] = address
+    elif int(choice) == 4:
         s['user'] = configure_username()
         configure_password()
-    elif int(choice) == 4:
+    elif int(choice) == 5:
         macaddress = configure_mac()
-        address = configure_broadcast()
+        nas_ip = configure_address("NAS IP")
+        address = configure_address("broadcast")
         username = configure_username()
         configure_password()
         s['mac'] = macaddress
+        s['ip'] = nas_ip
         s['broadcast'] = address
         s['user'] = username
-    elif int(choice) == 5:
+    elif int(choice) == 6:
         print_current_setup()
     elif int(choice) == 0:
         execfile('nasmanager.py')

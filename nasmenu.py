@@ -2,8 +2,9 @@
 
 
 main_menu_options = ["Start NAS", "Shutdown NAS", "Configure NAS", "Exit\n"]
-config_menu_options = ["Configure NAS MAC address", "Configure network broadcast", "Configure username and password",
-                        "Run initial configuration", "Print current setup", "Exit to main menu\n"]
+config_menu_options = ["Configure NAS MAC address", "Configure NAS IP address", "Configure network broadcast",
+                       "Configure username and password", "Run initial configuration", "Print current setup",
+                       "Exit to main menu\n"]
 
 
 def print_greetings():
