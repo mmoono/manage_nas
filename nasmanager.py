@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import nasmenu
 from start_with_wol import wake_on_lan
+from nasstop import shutdown_nas
+from naspass import NasPass
 import shelve
 
 if __name__ == '__main__':
@@ -14,8 +16,14 @@ if __name__ == '__main__':
             wake_on_lan(s['mac'], s['broadcast'])
             s.close()
         elif int(user_input) == 2:
-            print(" ")
-            # TODO: stop nas
+            print("Shutting down NAS!\n")
+            s = shelve.open('../config.dat')
+            secret = NasPass()
+            file = open("../passwd.bin", "r")
+            encrypted_pass = file.read()
+            decrypted_pass = secret.decryptPassword(encrypted_pass)
+            file.close()
+            shutdown_nas(s['ip'], s['user'], decrypted_pass)
         elif int(user_input) == 3:
             execfile('nasconfigure.py')
        #elif int(user_input) == 0:

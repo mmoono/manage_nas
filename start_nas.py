@@ -2,5 +2,5 @@
 
 import os
 
-os.chdir('D:\\Downloads\\')
-os.system('D:\\Downloads\\mc-wol.exe 90:EF:68:15:6B:FE')
+os.chdir('C:\\Users\\dio\\Downloads')
+os.system('C:\\Users\\dio\\Downloads\\mc-wol.exe 90:EF:68:15:6B:FE')
