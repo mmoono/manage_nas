@@ -25,7 +25,7 @@ class NasPass(object):
         else:
             return enc[:endIndex]
 
-
+'''
 if __name__ == '__main__':
     import sys
 
@@ -36,3 +36,4 @@ if __name__ == '__main__':
     file.write(encPWD)
     file.close
     print "Password file passwd.bin was created in current path."
+'''

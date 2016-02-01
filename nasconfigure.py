@@ -104,7 +104,7 @@ def configure_address(address_type):
 
 
 def configure_username():
-    username = raw_input("Provide NAS username (with rights to run \"poweroff\"")
+    username = raw_input("Provide NAS username (with rights to run \"poweroff\"): ")
     return username
 
 

@@ -9,7 +9,7 @@ def test_telnet_status(host, timeout=5):
     s.settimeout(timeout)
     try:
         s.connect((host, 23))
-        print("Telnet is up and running!")
+        print("Telnet is up and running.")
         return True
     except socket.error as e:
         print('Telnet did not respond in {} seconds. Error message: {}'.format(timeout, e))
@@ -42,5 +42,5 @@ def shutdown_nas(host, username, password):
         if test_telnet_status(host):
             time.sleep(5)
         else:
-            print('NAS was shutdown properly. Exiting')
+            print('NAS was shutdown properly. Exiting.')
             break
